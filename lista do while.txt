@@ -1,0 +1,328 @@
+#include <stdio.h>
+#include <unistd.h>  // Para a função sleep()
+
+int main() {
+    int segundos;
+
+    // Solicita que o usuário insira o número de segundos
+    printf("Digite o número de segundos para a contagem regressiva: ");
+    scanf("%d", &segundos);
+
+    // Loop do...while para a contagem regressiva
+    do {
+        printf("Tempo restante: %d segundos\n", segundos);
+        sleep(1);  // Aguarda 1 segundo
+        segundos--;
+    } while (segundos > 0);
+
+    // Exibe mensagem ao final da contagem regressiva
+    printf("Contagem regressiva finalizada!\n");
+
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+#include <stdbool.h>  // Para usar variáveis booleanas
+
+int main() {
+    int numero;
+    bool entradaValida;  // Variável para indicar se a entrada é válida
+
+    do {
+        // Solicita a entrada do usuário
+        printf("Digite um número inteiro positivo: ");
+        scanf("%d", &numero);
+
+        // Verifica se o número é positivo
+        entradaValida = (numero > 0);
+
+        // Se a entrada não for válida, informa o usuário
+        if (!entradaValida) {
+            printf("Entrada inválida. Tente novamente.\n");
+        }
+
+    } while (!entradaValida);  // Continua o loop enquanto a entrada não for válida
+
+    // Exibe o número positivo inserido
+    printf("Você digitou o número positivo: %d\n", numero);
+
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    int numero, soma = 0;
+
+    printf("Digite números inteiros para somar (digite um número negativo para terminar):\n");
+
+    // Loop para solicitar números ao usuário
+    while (1) {  // Loop infinito que será encerrado com um número negativo
+        printf("Digite um número: ");
+        scanf("%d", &numero);
+
+        // Verifica se o número é negativo
+        if (numero < 0) {
+            break;  // Encerra o loop se o número for negativo
+        }
+
+        // Soma os números positivos
+        soma += numero;
+    }
+
+    // Exibe a soma total dos números positivos
+    printf("A soma total dos números positivos inseridos é: %d\n", soma);
+
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char senhaCorreta[] = "Neumann1";  // Define a senha correta
+    char senha[100];  // Array para armazenar a senha inserida pelo usuário
+
+    do {
+        // Solicita ao usuário para inserir a senha
+        printf("Digite a senha: ");
+        fgets(senha, sizeof(senha), stdin);  // Lê a senha do usuário
+
+        // Remove a nova linha da entrada (se presente)
+        senha[strcspn(senha, "\n")] = 0;
+
+    } while (strcmp(senha, senhaCorreta) != 0);  // Compara a senha inserida com a senha correta
+
+    // Se a senha estiver correta, exibe a mensagem
+    printf("Senha correta!\n");
+
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+int main() {
+    char senha[100];        // Array para armazenar a senha
+    char confirmacao[100]; // Array para armazenar a senha de confirmação
+    bool cadastroValido;    // Variável booleana para controlar o fluxo
+
+    do {
+        // Solicita que o usuário digite a senha
+        printf("Digite a senha: ");
+        fgets(senha, sizeof(senha), stdin);
+        senha[strcspn(senha, "\n")] = 0; // Remove o caractere de nova linha
+
+        // Solicita que o usuário digite a senha novamente para confirmação
+        printf("Confirme a senha: ");
+        fgets(confirmacao, sizeof(confirmacao), stdin);
+        confirmacao[strcspn(confirmacao, "\n")] = 0; // Remove o caractere de nova linha
+
+        // Compara as senhas
+        cadastroValido = (strcmp(senha, confirmacao) == 0); // Verifica se as senhas são iguais
+
+        if (!cadastroValido) {
+            printf("As senhas não coincidem. Tente novamente.\n");
+        }
+
+    } while (!cadastroValido); // Continua o loop até que as senhas coincidam
+
+    // Se as senhas forem iguais, exibe a mensagem de sucesso
+    printf("Cadastro da senha realizado com sucesso!\n");
+
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_NOMES 100  // Define o máximo de nomes que podem ser cadastrados
+#define TAM_NOME 50   // Define o tamanho máximo de cada nome
+
+int main() {
+    char nomes[MAX_NOMES][TAM_NOME];  // Matriz para armazenar os nomes
+    int contador = 0;                  // Contador de nomes cadastrados
+
+    printf("Digite os nomes (pressione Enter para parar):\n");
+
+    // Loop para cadastrar os nomes
+    while (contador < MAX_NOMES) {
+        printf("Nome %d: ", contador + 1);
+        fgets(nomes[contador], sizeof(nomes[contador]), stdin);  // Lê o nome do usuário
+        nomes[contador][strcspn(nomes[contador], "\n")] = 0; // Remove o caractere de nova linha
+
+        // Verifica se a string é vazia
+        if (strlen(nomes[contador]) == 0) {
+            break;  // Para o loop se o usuário pressionar apenas Enter
+        }
+
+        contador++;  // Incrementa o contador de nomes
+    }
+
+    // Exibe os nomes cadastrados
+    printf("\nNomes cadastrados:\n");
+    for (int i = 0; i < contador; i++) {
+        printf("%s\n", nomes[i]);  // Imprime cada nome
+    }
+
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    float valorReais;
+    const float taxaCambio = 5.25;  // Taxa de câmbio fixa de 1 USD = 5.25 BRL
+    float valorDolares;
+
+    printf("Conversão de Reais (BRL) para Dólares (USD)\n");
+
+    // Loop para solicitar valores
+    do {
+        // Solicita ao usuário para inserir o valor em reais
+        printf("Digite o valor em Reais (0 ou negativo para encerrar): ");
+        scanf("%f", &valorReais);
+
+        // Verifica se o valor é positivo
+        if (valorReais > 0) {
+            // Realiza a conversão
+            valorDolares = valorReais / taxaCambio;
+            // Exibe o valor convertido
+            printf("Valor em Dólares: USD %.2f\n", valorDolares);
+        }
+
+    } while (valorReais > 0);  // Continua até que o usuário digite um valor menor ou igual a 0
+
+    printf("Programa encerrado.\n");
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h> // Para rand() e srand()
+#include <time.h>   // Para time()
+
+int main() {
+    int numeroGerado, palpite, tentativas = 5;
+
+    // Inicializa a semente para o gerador de números aleatórios
+    srand(time(NULL));
+
+    // Gera um número aleatório entre 1 e 50
+    numeroGerado = rand() % 50 + 1;
+
+    printf("Adivinhe o número gerado entre 1 e 50. Você tem %d tentativas.\n", tentativas);
+
+    // Loop para as tentativas do usuário
+    while (tentativas > 0) {
+        printf("Digite seu palpite: ");
+        scanf("%d", &palpite);
+
+        // Verifica se o palpite está correto
+        if (palpite == numeroGerado) {
+            printf("Parabéns! Você acertou o número: %d\n", numeroGerado);
+            break; // Encerra o loop se o usuário acertou
+        } else if (palpite < numeroGerado) {
+            printf("O número gerado é maior que %d.\n", palpite);
+        } else {
+            printf("O número gerado é menor que %d.\n", palpite);
+        }
+
+        tentativas--; // Decrementa o número de tentativas restantes
+        printf("Tentativas restantes: %d\n", tentativas);
+    }
+
+    if (tentativas == 0) {
+        printf("Você perdeu! O número gerado era: %d\n", numeroGerado);
+    }
+
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_STRING 100  // Tamanho máximo da string
+
+int main() {
+    char str[MAX_STRING]; // Array para armazenar a string
+    int freq[256];       // Array para armazenar a frequência dos caracteres (256 para incluir todos os caracteres ASCII)
+
+    while (1) {  // Loop infinito que será encerrado com uma string vazia
+        // Inicializa o array de frequência
+        memset(freq, 0, sizeof(freq)); // Zera o array de frequência
+
+        // Solicita que o usuário insira uma string
+        printf("Digite uma string (ou pressione Enter para sair): ");
+        fgets(str, sizeof(str), stdin);  // Lê a string do usuário
+        str[strcspn(str, "\n")] = 0; // Remove o caractere de nova linha
+
+        // Verifica se a string está vazia
+        if (strlen(str) == 0) {
+            break;  // Encerra o loop se a string for vazia
+        }
+
+        // Conta a frequência de cada caractere
+        for (int i = 0; str[i] != '\0'; i++) {
+            freq[(unsigned char)str[i]]++;  // Incrementa a contagem do caractere
+        }
+
+        // Exibe a contagem de caracteres
+        printf("Frequência de caracteres:\n");
+        for (int i = 0; i < 256; i++) {
+            if (freq[i] > 0) {  // Exibe apenas os caracteres que aparecem na string
+                printf("'%c': %d\n", i, freq[i]);
+            }
+        }
+    }
+
+    printf("Programa encerrado.\n");
+    return 0;
+}
+-------------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    float valorEmprestimo, taxaJuros, valorFinal;
+    int meses;
+
+    printf("Simulação de Empréstimo\n");
+
+    while (1) { // Loop infinito que será encerrado com um valor de empréstimo negativo
+        // Solicita ao usuário o valor do empréstimo
+        printf("Digite o valor do empréstimo (negativo para sair): ");
+        scanf("%f", &valorEmprestimo);
+
+        // Verifica se o valor do empréstimo é negativo
+        if (valorEmprestimo < 0) {
+            break; // Encerra o loop se o valor for negativo
+        }
+
+        // Solicita a taxa de juros mensal
+        printf("Digite a taxa de juros mensal (em porcentagem): ");
+        scanf("%f", &taxaJuros);
+
+        // Solicita o número de meses
+        printf("Digite o número de meses: ");
+        scanf("%d", &meses);
+
+        // Converte a taxa de juros de porcentagem para decimal
+        float taxaDecimal = taxaJuros / 100;
+
+        // Exibe o valor final a ser pago após cada mês
+        printf("\nValor do empréstimo: %.2f\n", valorEmprestimo);
+        printf("Taxa de juros: %.2f%%\n", taxaJuros);
+        printf("Número de meses: %d\n", meses);
+        printf("Valor final a ser pago após cada mês:\n");
+
+        for (int i = 1; i <= meses; i++) {
+            valorFinal = valorEmprestimo * (1 + taxaDecimal * i); // Calcula o valor final
+            printf("Mês %d: %.2f\n", i, valorFinal);
+        }
+
+        printf("\n"); // Nova linha para separação entre os casos
+    }
+
+    printf("Programa encerrado.\n");
+    return 0;
+}

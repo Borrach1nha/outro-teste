@@ -1,0 +1,210 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    // Loop de 1 a 100
+    for (int i = 1; i <= 100; i++) {
+        // Verifica se o número é par
+        if (i % 2 == 0) {
+            printf("%d\n", i);  // Imprime o número
+        }
+    }
+
+    return 0;
+}
+
+---------------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int num, soma = 0;
+    float media;
+
+    // Loop para ler 5 números
+    for (int i = 1; i <= 5; i++) {
+        printf("Digite o número %d: ", i);
+        scanf("%d", &num);  // Lê o número inserido pelo usuário
+        soma += num;  // Soma os números
+    }
+
+    // Calcula a média
+    media = soma / 5.0;
+
+    // Exibe a média
+    printf("A média dos números inseridos é: %.2f\n", media);
+
+    return 0;
+}
+---------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    // Loop de 1 a 100
+    for (int i = 1; i <= 100; i++) {
+        // Verifica se o número é divisível por 3 e 5
+        if (i % 3 == 0 && i % 5 == 0) {
+            printf("%d\n", i);  // Imprime o número
+        }
+    }
+
+    return 0;
+}
+---------------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    // Loop de 1 a 20
+    for (int i = 1; i <= 20; i++) {
+        // Verifica se i é igual a 10
+        if (i == 10) {
+            printf("Metade do caminho percorrida!\n");
+        }
+
+        // Imprime o valor atual de i
+        printf("%d\n", i);
+    }
+
+    return 0;
+}
+-------------------------------------------------------
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];  // Variável para armazenar a string
+
+    // Solicita a entrada da string pelo usuário
+    printf("Digite uma string: ");
+    fgets(str, sizeof(str), stdin);  // Lê a string do usuário (incluindo o '\n' ao final)
+
+    // Remove o caractere '\n' (nova linha) se presente
+    str[strcspn(str, "\n")] = 0;
+
+    // Obtém o comprimento da string
+    int comprimento = strlen(str);
+
+    // Imprime a string na ordem inversa
+    printf("String na ordem inversa: ");
+    for (int i = comprimento - 1; i >= 0; i--) {
+        printf("%c", str[i]);  // Percorre a string de trás para frente
+    }
+
+    printf("\n");
+
+    return 0;
+}
+-------------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int num, soma = 0;
+
+    // Loop para iterar sobre 10 números fornecidos pelo usuário
+    for (int i = 1; i <= 10; i++) {
+        printf("Digite o número %d: ", i);
+        scanf("%d", &num);
+
+        // Se o número for negativo, pula para a próxima iteração
+        if (num < 0) {
+            continue;
+        }
+
+        // Se o número for zero, termina o loop
+        if (num == 0) {
+            break;
+        }
+
+        // Se o número for positivo, soma ao total
+        soma += num;
+    }
+
+    // Imprime a soma total dos números positivos
+    printf("A soma total dos números positivos é: %d\n", soma);
+
+    return 0;
+}
+-------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    // Loop de 1 a 7
+    for (int i = 1; i <= 7; i++) {
+        // Estrutura switch para escolher o dia da semana
+        switch (i) {
+            case 1:
+                printf("1 - Domingo\n");
+                break;
+            case 2:
+                printf("2 - Segunda-feira\n");
+                break;
+            case 3:
+                printf("3 - Terça-feira\n");
+                break;
+            case 4:
+                printf("4 - Quarta-feira\n");
+                break;
+            case 5:
+                printf("5 - Quinta-feira\n");
+                break;
+            case 6:
+                printf("6 - Sexta-feira\n");
+                break;
+            case 7:
+                printf("7 - Sábado\n");
+                break;
+            default:
+                printf("Número inválido\n");
+                break;
+        }
+    }
+
+    return 0;
+}
+-------------------------------------------------------
+#include <stdio.h>
+#include <ctype.h>  // Para funções como tolower() e isdigit()
+#include <string.h> // Para strlen()
+
+int main() {
+    char str[100];
+
+    // Solicita a entrada da string
+    printf("Digite uma string: ");
+    fgets(str, sizeof(str), stdin);  // Lê a string fornecida pelo usuário
+
+    // Percorre a string caracter por caracter
+    for (int i = 0; i < strlen(str); i++) {
+        char ch = tolower(str[i]);  // Converte o caractere para minúsculo (para facilitar a identificação)
+
+        // Estrutura switch para determinar o tipo de caractere
+        switch (ch) {
+            case 'a': case 'e': case 'i': case 'o': case 'u':
+                printf("'%c' é uma vogal\n", str[i]);
+                break;
+
+            case 'b': case 'c': case 'd': case 'f': case 'g':
+            case 'h': case 'j': case 'k': case 'l': case 'm':
+            case 'n': case 'p': case 'q': case 'r': case 's':
+            case 't': case 'v': case 'w': case 'x': case 'y': case 'z':
+                printf("'%c' é uma consoante\n", str[i]);
+                break;
+
+            default:
+                if (isdigit(str[i])) {
+                    printf("'%c' é um dígito\n", str[i]);
+                } else if (isspace(str[i])) {
+                    // Ignora espaços e novas linhas
+                    continue;
+                } else {
+                    printf("'%c' é outro caractere\n", str[i]);
+                }
+                break;
+        }
+    }
+
+    return 0;
+}

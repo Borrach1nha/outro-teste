@@ -1,0 +1,277 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main() {
+ int segundos = 10; // Defina o número de segundos para a contagem regressiva
+
+    printf("Iniciando contagem regressiva...\n");
+
+    // Laço para a contagem regressiva
+    for (int i = segundos; i > 0; i--) {
+        printf("%d\n", i);
+        sleep(1); // Pausa de 1 segundo
+    }
+
+    printf("Contagem regressiva finalizada! :) \n");
+ return 0;
+}
+// --------------------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    int num, fatorial = 1;
+
+    // Solicita que o usuário insira um número positivo
+    printf("Digite um número inteiro positivo: ");
+    scanf("%d", &num);
+
+    // Verifica se o número é positivo
+    if (num < 0) {
+        printf("O fatorial não está definido para números negativos.\n");
+    } else {
+        int i = num;
+        // Calcula o fatorial usando o loop while
+        while (i > 1) {
+            fatorial *= i;
+            i--;
+        }
+
+        // Exibe o resultado
+        printf("O fatorial de %d é: %d\n", num, fatorial);
+    }
+
+    return 0;
+}
+// --------------------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    int N, i, soma = 0;
+
+    // Solicita que o usuário insira um número inteiro positivo
+    printf("Digite um número inteiro positivo: ");
+    scanf("%d", &N);
+
+    // Verifica se o número é positivo
+    if (N <= 0) {
+        printf("Por favor, insira um número positivo.\n");
+    } else {
+        // Calcula a soma dos números pares de 1 a N
+        for (i = 1; i <= N; i++) {
+            if (i % 2 == 0) {
+                soma += i;
+            }
+        }
+
+        // Exibe o resultado
+        printf("A soma de todos os números pares entre 1 e %d é: %d\n", N, soma);
+    }
+
+    return 0;
+}
+// --------------------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    int num, i;
+
+    // Solicita que o usuário insira um número
+    printf("Digite um número para ver a sua tabuada de multiplicação: ");
+    scanf("%d", &num);
+
+    // Imprime a tabuada de 1 a 10
+    printf("Tabuada de %d:\n", num);
+    for (i = 1; i <= 10; i++) {
+        printf("%d x %d = %d\n", num, i, num * i);
+    }
+
+    return 0;
+}
+// --------------------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    int i, count = 0;
+
+    // Solicita que o usuário insira uma string
+    printf("Digite uma string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Percorre cada caractere da string e conta as vogais
+    for (i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+
+        // Verifica se o caractere é uma vogal (maiúscula ou minúscula)
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+            ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+            count++;
+        }
+    }
+
+    // Exibe o número de vogais na string
+    printf("Número de vogais: %d\n", count);
+
+    return 0;
+}
+// --------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int n, t1 = 0, t2 = 1, proximoTermo;
+
+    // Solicita que o usuário insira o valor de n
+    printf("Digite o número de termos da sequência de Fibonacci: ");
+    scanf("%d", &n);
+
+    // Verifica se n é positivo
+    if (n <= 0) {
+        printf("Por favor, insira um número positivo.\n");
+    } else {
+        printf("Sequência de Fibonacci:\n");
+
+        for (int i = 1; i <= n; i++) {
+            // Imprime o termo atual
+            printf("%d ", t1);
+
+            // Calcula o próximo termo da sequência
+            proximoTermo = t1 + t2;
+            t1 = t2;
+            t2 = proximoTermo;
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
+// --------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <limits.h>  // Para usar as constantes INT_MAX e INT_MIN
+
+int main() {
+    int num, maior, menor;
+
+    // Inicializa as variáveis com valores apropriados
+    maior = INT_MIN;  // Menor valor possível para um int
+    menor = INT_MAX;  // Maior valor possível para um int
+
+    // Solicita que o usuário insira números inteiros
+    printf("Digite uma sequência de números inteiros (digite 0 para encerrar):\n");
+
+    while (1) {
+        scanf("%d", &num);
+
+        // Verifica se o número é 0 para encerrar o loop
+        if (num == 0) {
+            break;
+        }
+
+        // Verifica se o número atual é maior que o maior valor encontrado
+        if (num > maior) {
+            maior = num;
+        }
+
+        // Verifica se o número atual é menor que o menor valor encontrado
+        if (num < menor) {
+            menor = num;
+        }
+    }
+
+    // Verifica se o usuário digitou algum número antes de digitar 0
+    if (maior == INT_MIN && menor == INT_MAX) {
+        printf("Nenhum número foi digitado.\n");
+    } else {
+        // Exibe o maior e o menor valor
+        printf("Maior valor: %d\n", maior);
+        printf("Menor valor: %d\n", menor);
+    }
+
+    return 0;
+}
+// --------------------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    int num, soma = 0, contador = 0;
+    float media;
+
+    // Solicita que o usuário insira números inteiros
+    printf("Digite uma sequência de números inteiros (digite 0 para encerrar):\n");
+
+    while (1) {
+        scanf("%d", &num);
+
+        // Verifica se o número é 0 para encerrar o loop
+        if (num == 0) {
+            break;
+        }
+
+        // Soma os números e conta a quantidade de entradas
+        soma += num;
+        contador++;
+    }
+
+    // Verifica se o usuário digitou algum número antes de digitar 0
+    if (contador == 0) {
+        printf("Nenhum número foi digitado.\n");
+    } else {
+        // Calcula a média aritmética
+        media = (float) soma / contador;
+
+        // Exibe a média
+        printf("A média aritmética é: %.2f\n", media);
+    }
+
+    return 0;
+}
+// --------------------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char str[100], palavra[100];
+    int i = 0, j = 0;
+
+    // Solicita que o usuário insira uma palavra
+    printf("Digite uma palavra: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Remove espaços e caracteres especiais e converte para minúsculas
+    while (str[i] != '\0') {
+        if (isalnum(str[i])) {  // Verifica se é um caractere alfanumérico
+            palavra[j++] = tolower(str[i]);  // Converte para minúsculo
+        }
+        i++;
+    }
+    palavra[j] = '\0';  // Termina a nova string
+
+    // Verifica se a palavra é um palíndromo
+    int length = strlen(palavra);
+    i = 0;
+    j = length - 1;
+    int ehPalindromo = 1;  // Inicializa como verdadeiro
+
+    while (i < j) {
+        if (palavra[i] != palavra[j]) {
+            ehPalindromo = 0;  // Não é palíndromo
+            break;
+        }
+        i++;
+        j--;
+    }
+
+    // Exibe o resultado
+    if (ehPalindromo) {
+        printf("A palavra é um palíndromo.\n");
+    } else {
+        printf("A palavra não é um palíndromo.\n");
+    }
+
+    return 0;
+}
